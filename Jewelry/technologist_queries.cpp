@@ -38,7 +38,7 @@ void TechnologistQueries::stone_availability_btn_clicked() {
 		if (condition != "WHERE ") {
 			condition += " AND ";
 		}
-		condition += "Камни.`Камень` = '" + stone.toStdString() + "'";
+		condition += "Камни.`Камень` LIKE '" + stone.toStdString() + "%'";
 	}
 	else if (!ok) {
 		_ui->stone_availability_btn->setEnabled(true);
@@ -96,7 +96,7 @@ void TechnologistQueries::metal_availability_btn_clicked() {
 		if (condition != "WHERE ") {
 			condition += " AND ";
 		}
-		condition += "Металл.`Вид металла` = '" + metal.toStdString() + "'";
+		condition += "Металл.`Вид металла` LIKE '" + metal.toStdString() + "%'";
 	}
 	else if (!ok) {
 		_ui->metal_availability_btn->setEnabled(true);
@@ -158,7 +158,7 @@ void TechnologistQueries::param_search_btn_clicked() {
 			if (condition != "WHERE ") {
 				condition += " AND ";
 			}
-			condition += "Изделие.`Название изделия` = '" + product.toStdString() + "'";
+			condition += "Изделие.`Название изделия` LIKE '" + product.toStdString() + "%'";
 		}
 		else if (!ok) {
 			_ui->param_search_btn->setEnabled(true);
@@ -181,7 +181,7 @@ void TechnologistQueries::param_search_btn_clicked() {
 			if (condition != "WHERE ") {
 				condition += " AND ";
 			}
-			condition += "стадии.`Стадия` = '" + stage.toStdString() + "'";
+			condition += "стадии.`Стадия` LIKE '" + stage.toStdString() + "%'";
 		}
 		else if (!ok) {
 			_ui->param_search_btn->setEnabled(true);
@@ -204,7 +204,7 @@ void TechnologistQueries::param_search_btn_clicked() {
 			if (condition != "WHERE ") {
 				condition += " AND ";
 			}
-			condition += "оборудование.`Оборудование` = '" + equipment.toStdString() + "'";
+			condition += "оборудование.`Оборудование` LIKE '" + equipment.toStdString() + "%'";
 		}
 		else if (!ok) {
 			_ui->param_search_btn->setEnabled(true);

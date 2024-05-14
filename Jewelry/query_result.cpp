@@ -7,6 +7,7 @@
 #include <QByteArray>
 #include <QToolBar>
 #include <QContextMenuEvent>
+#include <QInputDialog>
 
 
 QueryResult::QueryResult(QWidget* parent) : QMainWindow(parent), _ui(new Ui::QueryResultClass()) {
@@ -66,7 +67,6 @@ QueryResult::~QueryResult() {
 void QueryResult::addNewRow() {
 	int rowCount = _ui->output_table->rowCount();
 	QString insertQuery = "INSERT INTO " + _table_name + " (" + _primary_key_column_name + ") VALUES ('" + QString::number(rowCount + 1) + "');";
-	QMessageBox::information(this, "Информация", insertQuery);
 	runQuery(insertQuery.toStdString());
 
 	_ui->output_table->insertRow(rowCount);
@@ -82,17 +82,26 @@ void QueryResult::addNewRow() {
 
 
 void QueryResult::deleteRow() {
-	int currentRow = _ui->output_table->currentRow();
-	if (currentRow >= 0) { // Проверка, что выбрана какая-то строка
-		QTableWidgetItem* primaryKeyItem = _ui->output_table->item(currentRow, 0); // Предполагается, что первый столбец содержит первичные ключи
-		if (primaryKeyItem) {
-			QString primaryKeyValue = primaryKeyItem->text(); // Получение значения первичного ключа
-			QString deleteQuery = "DELETE FROM " + _table_name + " WHERE " + _primary_key_column_name + " = '" + primaryKeyValue + "';";
-			QMessageBox::information(this, "Информация", deleteQuery);
-			runQuery(deleteQuery.toStdString());
+	QMessageBox::StandardButton reply = QMessageBox::question(this, "Подтверждение", "Вы уверены, что хотите удалить эту строку?",
+		QMessageBox::Yes | QMessageBox::No);
+	if (reply == QMessageBox::Yes) {
+		int currentRow = _ui->output_table->currentRow();
+		if (currentRow >= 0) { // Проверка, что выбрана какая-то строка
+			QTableWidgetItem* primaryKeyItem = _ui->output_table->item(currentRow, 0); // Предполагается, что первый столбец содержит первичные ключи
+			if (primaryKeyItem) {
+				bool ok;
+				QString primaryKeyValue = primaryKeyItem->text(); // Получение значения первичного ключа
+				QString deleteQuery = "DELETE FROM " + _table_name + " WHERE " + _primary_key_column_name + " = '" + primaryKeyValue + "';";
 
-			_ui->output_table->removeRow(currentRow);
-			editSize();
+
+
+				runQuery(deleteQuery.toStdString());
+				_ui->output_table->removeRow(currentRow);
+				editSize();
+
+				_ui->output_table->removeRow(currentRow);
+				editSize();
+			}
 		}
 	}
 }

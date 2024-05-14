@@ -174,7 +174,7 @@ void Customer::param_search_btn_clicked() {
 			if (condition != "WHERE ") {
 				condition += " AND ";
 			}
-			condition += "вид_изделия.`Вид изделия` = '" + type.toStdString() + "'";
+			condition += "вид_изделия.`Вид изделия` LIKE '" + type.toStdString() + "%'";
 		}
 		else if (!ok) {
 			_ui->param_search_btn->setEnabled(true);
@@ -197,7 +197,7 @@ void Customer::param_search_btn_clicked() {
 			if (condition != "WHERE ") {
 				condition += " AND ";
 			}
-			condition += "Камни.`Камень` = '" + stone.toStdString() + "'";
+			condition += "Камни.`Камень` LIKE '" + stone.toStdString() + "%'";
 		}
 		else if (!ok) {
 			_ui->param_search_btn->setEnabled(true);
@@ -220,7 +220,7 @@ void Customer::param_search_btn_clicked() {
 			if (condition != "WHERE ") {
 				condition += " AND ";
 			}
-			condition += "Металл.`Вид металла` = '" + metal.toStdString() + "'";
+			condition += "Металл.`Вид металла` LIKE '" + metal.toStdString() + "%'";
 		}
 		else if (!ok) {
 			_ui->param_search_btn->setEnabled(true);
