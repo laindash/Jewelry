@@ -93,13 +93,24 @@ void QueryResult::deleteRow() {
 				QString primaryKeyValue = primaryKeyItem->text(); // Получение значения первичного ключа
 				QString deleteQuery = "DELETE FROM " + _table_name + " WHERE " + _primary_key_column_name + " = '" + primaryKeyValue + "';";
 
-
-
 				runQuery(deleteQuery.toStdString());
 				_ui->output_table->removeRow(currentRow);
-				editSize();
 
-				_ui->output_table->removeRow(currentRow);
+				int rowCount = _ui->output_table->rowCount();
+				for (int i = 0; i < rowCount; ++i) {
+					QTableWidgetItem* idItem = _ui->output_table->item(i, 0); // First column contains IDs
+					if (idItem) {
+						QString newId = QString::number(i + 1); // New sequential ID
+						QString oldId = idItem->text();
+
+						// Update the ID in the database
+						QString updateQuery = "UPDATE " + _table_name + " SET " + _primary_key_column_name + " = '" + newId + "' WHERE " + _primary_key_column_name + " = '" + oldId + "';";
+						runQuery(updateQuery.toStdString());
+
+						// Update the ID in the table widget
+						idItem->setText(newId);
+					}
+				}
 				editSize();
 			}
 		}
