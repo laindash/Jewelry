@@ -32,12 +32,6 @@
     <ClCompile Include="jewelry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <QtUic Include="technologist_queries.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="admin_queries.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="database.cpp">
@@ -58,12 +52,6 @@
     <ClCompile Include="customer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="technologist_queries.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="admin_queries.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="database.h">
@@ -81,12 +69,6 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="query_result.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="technologist_queries.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="admin_queries.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

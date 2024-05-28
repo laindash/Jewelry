@@ -39,7 +39,7 @@ QueryResult::QueryResult(QWidget* parent, QString& table_name, QString& primary_
 	_ui->output_table->setSelectionMode(QAbstractItemView::SingleSelection);
 
 	// Создание действия (акции) "Save"
-	QAction* saveAction = new QAction(tr("&Сохранить данные"), this);
+	QAction* saveAction = new QAction(tr("&Сохранить данные в базу"), this);
 	QAction* addRowAction = new QAction(tr("&Добавить строку"), this);
 	QAction* deleteRowAction = new QAction(tr("&Удалить строку"), this);
 
@@ -53,6 +53,7 @@ QueryResult::QueryResult(QWidget* parent, QString& table_name, QString& primary_
 	connect(saveAction, &QAction::triggered, this, &QueryResult::saveDataInDB);
 	connect(addRowAction, &QAction::triggered, this, &QueryResult::addNewRow);
 	connect(deleteRowAction, &QAction::triggered, this, &QueryResult::deleteRow);
+
 	toolBar->setMovable(false);
 
 	_table_name = table_name;
@@ -89,7 +90,6 @@ void QueryResult::deleteRow() {
 		if (currentRow >= 0) { // Проверка, что выбрана какая-то строка
 			QTableWidgetItem* primaryKeyItem = _ui->output_table->item(currentRow, 0); // Предполагается, что первый столбец содержит первичные ключи
 			if (primaryKeyItem) {
-				bool ok;
 				QString primaryKeyValue = primaryKeyItem->text(); // Получение значения первичного ключа
 				QString deleteQuery = "DELETE FROM " + _table_name + " WHERE " + _primary_key_column_name + " = '" + primaryKeyValue + "';";
 
@@ -215,7 +215,10 @@ void QueryResult::editSize() {
 	_ui->output_table->resizeColumnsToContents();
 
 	const int maxWidth = 1400;
-	const int maxHeight = 720;
+	const int maxHeight = 450;
+	_ui->output_table->resize(maxWidth, maxHeight);
+
+
 	const int additionalWidth = 5; // Примерное значение для увеличения ширины
 	const int additionalHeight = 40; // Примерное значение для увеличения ширины
 	// Подгоняем размер таблицы под содержимое
@@ -224,11 +227,11 @@ void QueryResult::editSize() {
 
 	if (tableWidth > maxWidth) {
 		tableWidth = maxWidth;
-		tableHeight += 20;
+		tableHeight += 30;
 	}
 	if (tableHeight > maxHeight) {
 		tableHeight = maxHeight;
-		tableWidth += 20;
+		tableWidth += 30;
 	}
 	_ui->output_table->resize(tableWidth, tableHeight);
 

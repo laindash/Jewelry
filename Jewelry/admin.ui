@@ -6,301 +6,1004 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>770</width>
-    <height>450</height>
+    <width>1475</width>
+    <height>704</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Администратор</string>
   </property>
-  <widget class="QPushButton" name="product_types_btn">
+  <widget class="QTabWidget" name="tabTables">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>30</y>
-     <width>331</width>
-     <height>51</height>
+     <x>0</x>
+     <y>0</y>
+     <width>1471</width>
+     <height>701</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
+   <property name="currentIndex">
+    <number>0</number>
    </property>
-   <property name="text">
-    <string>Виды изделий</string>
-   </property>
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="materials_btn">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>100</y>
-     <width>331</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Доп материалы</string>
-   </property>
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="products_btn">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>230</y>
-     <width>331</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Изделия</string>
-   </property>
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="stones_btn">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>360</y>
-     <width>331</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Камни</string>
-   </property>
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="metal_btn">
-   <property name="geometry">
-    <rect>
-     <x>400</x>
-     <y>30</y>
-     <width>331</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Металл</string>
-   </property>
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="equipment_btn">
-   <property name="geometry">
-    <rect>
-     <x>400</x>
-     <y>300</y>
-     <width>331</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Оборудование</string>
-   </property>
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="faceting_btn">
-   <property name="geometry">
-    <rect>
-     <x>400</x>
-     <y>100</y>
-     <width>331</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Огранка</string>
-   </property>
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pam_com_btn">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>170</y>
-     <width>331</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Связь изделие и доп материалы</string>
-   </property>
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pas_com_btn">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>300</y>
-     <width>331</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Связь изделие и камень</string>
-   </property>
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="stages_btn">
-   <property name="geometry">
-    <rect>
-     <x>400</x>
-     <y>170</y>
-     <width>331</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Стадии</string>
-   </property>
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="technologies_btn">
-   <property name="geometry">
-    <rect>
-     <x>400</x>
-     <y>230</y>
-     <width>331</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Технология</string>
-   </property>
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="admin_queries_btn">
-   <property name="geometry">
-    <rect>
-     <x>400</x>
-     <y>360</y>
-     <width>331</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Запросы для администратора</string>
-   </property>
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
+   <widget class="QWidget" name="products_tab">
+    <attribute name="title">
+     <string>Изделия</string>
+    </attribute>
+    <widget class="QWidget" name="formLayoutWidget_23">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>1461</width>
+       <height>501</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="products_layout"/>
+    </widget>
+    <widget class="QPushButton" name="upd_products_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>570</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Обновить данные в таблице</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="save_products_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>880</x>
+       <y>570</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Сохранить данные в отчёт</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="product_types_tab">
+    <attribute name="title">
+     <string>Вид изделия</string>
+    </attribute>
+    <widget class="QWidget" name="formLayoutWidget_24">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>1461</width>
+       <height>501</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="product_types_layout"/>
+    </widget>
+    <widget class="QPushButton" name="upd_product_types_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>540</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Обновить данные в таблице</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="save_product_types_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>600</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Сохранить данные в отчёт</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="products_price_btn">
+     <property name="geometry">
+      <rect>
+       <x>580</x>
+       <y>600</y>
+       <width>331</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Цена всех изделий</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="upd_products_price_btn">
+     <property name="geometry">
+      <rect>
+       <x>1000</x>
+       <y>600</y>
+       <width>331</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Обновить цену всех изделий</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="products_multiplier">
+     <property name="geometry">
+      <rect>
+       <x>1130</x>
+       <y>550</y>
+       <width>66</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+     <property name="placeholderText">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_37">
+     <property name="geometry">
+      <rect>
+       <x>1050</x>
+       <y>520</y>
+       <width>231</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Коэффициент умножения цены</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="materials_tab">
+    <attribute name="title">
+     <string>Дополнительные материалы</string>
+    </attribute>
+    <widget class="QWidget" name="formLayoutWidget_25">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>1461</width>
+       <height>501</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="materials_layout"/>
+    </widget>
+    <widget class="QPushButton" name="upd_materials_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>580</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Обновить данные в таблице</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="save_materials_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>840</x>
+       <y>580</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Сохранить данные в отчёт</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="metal_tab">
+    <attribute name="title">
+     <string>Металл</string>
+    </attribute>
+    <widget class="QWidget" name="formLayoutWidget_26">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>1461</width>
+       <height>501</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="metal_layout"/>
+    </widget>
+    <widget class="QPushButton" name="upd_metal_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>530</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Обновить данные в таблице</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="save_metal_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>600</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Сохранить данные в отчёт</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="metal_price_btn">
+     <property name="geometry">
+      <rect>
+       <x>580</x>
+       <y>600</y>
+       <width>331</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Цена всего металла на складе</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="upd_metal_price_btn">
+     <property name="geometry">
+      <rect>
+       <x>1010</x>
+       <y>600</y>
+       <width>331</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Обновить цену всего металла</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="metal_multiplier">
+     <property name="geometry">
+      <rect>
+       <x>1140</x>
+       <y>550</y>
+       <width>66</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+     <property name="placeholderText">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_38">
+     <property name="geometry">
+      <rect>
+       <x>1050</x>
+       <y>520</y>
+       <width>231</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Коэффициент умножения цены</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="stones_tab">
+    <attribute name="title">
+     <string>Камни</string>
+    </attribute>
+    <widget class="QWidget" name="formLayoutWidget_27">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>1461</width>
+       <height>501</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="stones_layout"/>
+    </widget>
+    <widget class="QPushButton" name="upd_stones_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>540</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Обновить данные в таблице</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="save_stones_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>600</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Сохранить данные в отчёт</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="stones_price_btn">
+     <property name="geometry">
+      <rect>
+       <x>580</x>
+       <y>600</y>
+       <width>331</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Цена всех камней на складе</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="stones_multiplier">
+     <property name="geometry">
+      <rect>
+       <x>1140</x>
+       <y>550</y>
+       <width>66</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+     <property name="placeholderText">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="upd_stones_price_btn">
+     <property name="geometry">
+      <rect>
+       <x>1010</x>
+       <y>600</y>
+       <width>331</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Обновить цену всех камней</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_39">
+     <property name="geometry">
+      <rect>
+       <x>1050</x>
+       <y>520</y>
+       <width>231</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Коэффициент умножения цены</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="faceting_tab">
+    <attribute name="title">
+     <string>Огранка</string>
+    </attribute>
+    <widget class="QWidget" name="formLayoutWidget_28">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>1461</width>
+       <height>501</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="faceting_layout"/>
+    </widget>
+    <widget class="QPushButton" name="upd_faceting_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>560</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Обновить данные в таблице</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="save_faceting_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>850</x>
+       <y>560</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Сохранить данные в отчёт</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="stages_tab">
+    <attribute name="title">
+     <string>Стадии</string>
+    </attribute>
+    <widget class="QWidget" name="formLayoutWidget_29">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>1461</width>
+       <height>501</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="stages_layout"/>
+    </widget>
+    <widget class="QPushButton" name="upd_stages_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>570</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Обновить данные в таблице</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="save_stages_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>840</x>
+       <y>570</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Сохранить данные в отчёт</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="technologies_tab">
+    <attribute name="title">
+     <string>Технология</string>
+    </attribute>
+    <widget class="QWidget" name="formLayoutWidget_30">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>1461</width>
+       <height>501</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="technologies_layout"/>
+    </widget>
+    <widget class="QPushButton" name="upd_technologies_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>570</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Обновить данные в таблице</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="save_technologies_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>820</x>
+       <y>570</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Сохранить данные в отчёт</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="equipment_tab">
+    <attribute name="title">
+     <string>Оборудование</string>
+    </attribute>
+    <widget class="QWidget" name="formLayoutWidget_31">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>1461</width>
+       <height>501</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="equipment_layout"/>
+    </widget>
+    <widget class="QPushButton" name="upd_equipment_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>570</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Обновить данные в таблице</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="save_equipment_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>830</x>
+       <y>570</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Сохранить данные в отчёт</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="pam_com_tab">
+    <attribute name="title">
+     <string>Связь изделие и дополнительные материалы</string>
+    </attribute>
+    <widget class="QWidget" name="formLayoutWidget_32">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>1461</width>
+       <height>501</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="pam_com_layout"/>
+    </widget>
+    <widget class="QPushButton" name="upd_pam_com_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>570</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Обновить данные в таблице</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="save_pam_com_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>810</x>
+       <y>570</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Сохранить данные в отчёт</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="pas_com_tab">
+    <attribute name="title">
+     <string>Связь изделие и камень</string>
+    </attribute>
+    <widget class="QWidget" name="formLayoutWidget_33">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>1461</width>
+       <height>501</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="pas_com_layout"/>
+    </widget>
+    <widget class="QPushButton" name="upd_pas_com_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>570</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Обновить данные в таблице</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="save_pas_com_table_btn">
+     <property name="geometry">
+      <rect>
+       <x>810</x>
+       <y>570</y>
+       <width>359</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Сохранить данные в отчёт</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <resources/>

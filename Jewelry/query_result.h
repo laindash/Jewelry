@@ -25,6 +25,7 @@ public:
 	~QueryResult();
 
 	void addDataToTable(sql::ResultSet* resultSet);
+	Ui::QueryResultClass* _ui;
 
 private slots:
 	void saveDataInDB();
@@ -32,8 +33,7 @@ private slots:
 	void deleteRow();
 
 private:
-	Ui::QueryResultClass *_ui;
-	QString _table_name{}, _primary_key_column_name{};
+	QString _table_name{}, _primary_key_column_name{};	
 
 	void contextMenuEvent(QContextMenuEvent* event);
 	void editSize();

@@ -2,9 +2,10 @@
 #include "database.h"
 #include "qmessagebox.h"
 #include <QInputDialog>
+#include <qfiledialog.h>
 
 
-Customer::Customer(QWidget* parent) : QMainWindow(parent), _ui(new Ui::CustomerClass()), _query_result(nullptr) {
+Customer::Customer(QWidget* parent) : QMainWindow(parent), _ui(new Ui::CustomerClass()) {
 	// Инициализация главного окна
 	_ui->setupUi(this);
 
@@ -12,11 +13,14 @@ Customer::Customer(QWidget* parent) : QMainWindow(parent), _ui(new Ui::CustomerC
 	setWindowFlags(windowFlags() | Qt::MSWindowsFixedSizeDialogHint);
 	setWindowFlags(windowFlags() & ~(Qt::WindowFullscreenButtonHint | Qt::WindowMaximizeButtonHint));
 	setWindowFlags(windowFlags() & ~Qt::WindowMinMaxButtonsHint);
+	setWindowModality(Qt::WindowModal);
 
-	connect(_ui->products_btn, &QPushButton::clicked, this, &Customer::products_btn_clicked);
-	connect(_ui->product_types_btn, &QPushButton::clicked, this, &Customer::product_types_btn_clicked);
-	connect(_ui->stones_btn, &QPushButton::clicked, this, &Customer::stones_btn_clicked);
-	connect(_ui->metal_btn, &QPushButton::clicked, this, &Customer::metal_btn_clicked);
+	products_add();
+	setupComboBoxes();
+
+	connect(_ui->upd_products_table_btn, &QPushButton::clicked, this, &Customer::products_add);
+	connect(_ui->save_products_table_btn, &QPushButton::clicked, this, &Customer::products_save);
+
 	connect(_ui->param_search_btn, &QPushButton::clicked, this, &Customer::param_search_btn_clicked);
 }
 
@@ -25,14 +29,83 @@ Customer::~Customer() {
 }
 
 
-void Customer::products_btn_clicked() {
-	_ui->products_btn->setEnabled(false);
-	this->hide();
-	_query_result = new QueryResult(this);
+void Customer::saveTableToFile(QTableWidget* tableWidget) {
+	QString fileName = QFileDialog::getSaveFileName(nullptr, "Save Excel File", "", "Excel Files (*.xml)");
 
-	// Подключение сигнала destroyed() к слоту, который включает кнопку
-	connect(_query_result, &QObject::destroyed, this, &Customer::enableProductsButton);
-	_query_result->setAttribute(Qt::WA_DeleteOnClose); //clear memory
+	if (fileName.isEmpty()) {
+		return;
+	}
+
+	QFile file(fileName);
+	if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+		QMessageBox::warning(nullptr, "Save Excel File", "Cannot open file for writing: " + fileName);
+		return;
+	}
+
+	QTextStream out(&file);
+
+	// Запись заголовков столбцов
+	out << "<?xml version=\"1.0\"?>\n";
+	out << "<?mso-application progid=\"Excel.Sheet\"?>\n";
+	out << "<Workbook xmlns=\"urn:schemas-microsoft-com:office:spreadsheet\"\n";
+	out << "    xmlns:o=\"urn:schemas-microsoft-com:office:office\"\n";
+	out << "    xmlns:x=\"urn:schemas-microsoft-com:office:excel\"\n";
+	out << "    xmlns:ss=\"urn:schemas-microsoft-com:office:spreadsheet\"\n";
+	out << "    xmlns:html=\"http://www.w3.org/TR/REC-html40\">\n";
+	out << "  <Worksheet ss:Name=\"Sheet1\">\n";
+	out << "    <Table>\n";
+
+	// Запись заголовков столбцов, пропуская столбец с названием "фото изделия"
+	out << "      <Row>\n";
+	for (int col = 0; col < tableWidget->columnCount(); ++col) {
+		QString header = tableWidget->horizontalHeaderItem(col)->data(Qt::DisplayRole).toString();
+		if (header != "Фото изделия") {
+			out << "        <Cell><Data ss:Type=\"String\">" << header << "</Data></Cell>\n";
+		}
+	}
+	out << "      </Row>\n";
+
+	// Запись данных из таблицы
+	for (int row = 0; row < tableWidget->rowCount(); ++row) {
+		out << "      <Row>\n";
+		for (int col = 0; col < tableWidget->columnCount(); ++col) {
+			QString header = tableWidget->horizontalHeaderItem(col)->data(Qt::DisplayRole).toString();
+			if (header != "Фото изделия") {
+				QTableWidgetItem* item = tableWidget->item(row, col);
+				if (item && item->data(Qt::DisplayRole).isValid()) {
+					QString cellValue = item->data(Qt::DisplayRole).toString();
+					out << "        <Cell><Data ss:Type=\"String\">" << cellValue << "</Data></Cell>\n";
+				}
+				else {
+					out << "        <Cell><Data ss:Type=\"String\"></Data></Cell>\n";
+				}
+			}
+		}
+		out << "      </Row>\n";
+	}
+
+	out << "    </Table>\n";
+	out << "  </Worksheet>\n";
+	out << "</Workbook>\n";
+
+	file.close();
+	QMessageBox::information(nullptr, "Save Excel File", "Data saved to " + fileName);
+}
+
+
+void Customer::products_save() {
+	saveTableToFile(_products->_ui->output_table);
+}
+
+
+void Customer::products_add() {
+	QLayoutItem* child;
+	while ((child = _ui->products_layout->takeAt(0)) != nullptr) {
+		delete child->widget(); // Удаляем виджеты
+		delete child; // Освобождаем память после элемента компоновки
+	}
+
+	_products = new QueryResult(this);
 
 	sql::ResultSet* result = runQuery("SELECT Изделие.`Название изделия`, вид_изделия.`Вид изделия`, Изделие.`Цена, руб`, Металл.`Вид металла`, Изделие.`Вес металла, гр`, Камни.`Камень`, "
 		"Камни.`Карат`, связь_изделие_и_камень.`Количество камней, шт`, Изделие.`Фото изделия` "
@@ -41,121 +114,18 @@ void Customer::products_btn_clicked() {
 		"INNER JOIN связь_изделие_и_камень ON связь_изделие_и_камень.`Изделие` = Изделие.`Код изделия` "
 		"INNER JOIN камни ON связь_изделие_и_камень.`Камень` = камни.`Код`;");
 	if (result) {
-		_query_result->addDataToTable(result);
+		_products->addDataToTable(result);
 		delete result;
-		_query_result->show();
 	}
-	else {
-		QMessageBox::information(this, "Информация", "Данные не найдены!");
-		delete _query_result;
-		delete result;
-		_ui->products_btn->setEnabled(true);
-		this->show();
-	}
+
+	_ui->products_layout->addWidget(_products);
 }
 
-void Customer::enableProductsButton() {
-	_ui->products_btn->setEnabled(true);
-	this->show();
-}
-
-
-void Customer::product_types_btn_clicked() {
-	_ui->product_types_btn->setEnabled(false);
-	this->hide();
-	_query_result = new QueryResult(this);
-
-	// Подключение сигнала destroyed() к слоту, который включает кнопку
-	connect(_query_result, &QObject::destroyed, this, &Customer::enableProductTypesButton);
-	_query_result->setAttribute(Qt::WA_DeleteOnClose); //clear memory
-
-	sql::ResultSet* result = runQuery("SELECT вид_изделия.`Вид изделия` FROM `вид_изделия`;");
-
-	if (result) {
-		_query_result->addDataToTable(result);
-		delete result;
-		_query_result->show();
-	}
-	else {
-		QMessageBox::information(this, "Информация", "Данные не найдены!");
-		delete _query_result;
-		delete result;
-		_ui->product_types_btn->setEnabled(true);
-		this->show();
-	}
-}
-
-void Customer::enableProductTypesButton() {
-	_ui->product_types_btn->setEnabled(true);
-	this->show();
-}
-
-
-void Customer::stones_btn_clicked() {
-	_ui->stones_btn->setEnabled(false);
-	this->hide();
-	_query_result = new QueryResult(this);
-
-	// Подключение сигнала destroyed() к слоту, который включает кнопку
-	connect(_query_result, &QObject::destroyed, this, &Customer::enableStonesButton);
-	_query_result->setAttribute(Qt::WA_DeleteOnClose); //clear memory
-
-	sql::ResultSet* result = runQuery("SELECT камни.`Камень` "
-		"FROM `камни`;");
-
-	if (result) {
-		_query_result->addDataToTable(result);
-		delete result;
-		_query_result->show();
-	}
-	else {
-		QMessageBox::information(this, "Информация", "Данные не найдены!");
-		delete _query_result;
-		delete result;
-		_ui->stones_btn->setEnabled(true);
-		this->show();
-	}
-}
-
-void Customer::enableStonesButton() {
-	_ui->stones_btn->setEnabled(true);
-	this->show();
-}
-
-
-void Customer::metal_btn_clicked() {
-	_ui->metal_btn->setEnabled(false);
-	this->hide();
-	_query_result = new QueryResult(this);
-
-	// Подключение сигнала destroyed() к слоту, который включает кнопку
-	connect(_query_result, &QObject::destroyed, this, &Customer::enableMetalButton);
-	_query_result->setAttribute(Qt::WA_DeleteOnClose); //clear memory
-
-	sql::ResultSet* result = runQuery("SELECT металл.`Вид металла` FROM `металл`;");
-	if (result) {
-		_query_result->addDataToTable(result);
-		delete result;
-		_query_result->show();
-	}
-	else {
-		QMessageBox::information(this, "Информация", "Данные не найдены!");
-		delete _query_result;
-		delete result;
-		_ui->metal_btn->setEnabled(true);
-		this->show();
-	}
-}
-
-void Customer::enableMetalButton() {
-	_ui->metal_btn->setEnabled(true);
-	this->show();
-}
 
 
 void Customer::param_search_btn_clicked() {
 	_ui->param_search_btn->setEnabled(false);
-	this->hide();
+
 	std::string sql_query =
 		"SELECT Изделие.`Название изделия`, вид_изделия.`Вид изделия`, Изделие.`Цена, руб`, Металл.`Вид металла`, Изделие.`Вес металла, гр`, Камни.`Камень`, "
 		"Камни.`Карат`, связь_изделие_и_камень.`Количество камней, шт`, Изделие.`Фото изделия` "
@@ -165,149 +135,105 @@ void Customer::param_search_btn_clicked() {
 		"INNER JOIN камни ON связь_изделие_и_камень.`Камень` = камни.`Код` ";
 	std::string condition = "WHERE ";
 	
+	if (!_ui->product_type->currentText().isEmpty()) {
+		QString type = _ui->product_type->currentText();
 
-	if (_ui->type_check->isChecked()) {
-		bool ok;
-		QString type = QInputDialog::getText(this, "Введите вид изделия", "Вид изделия:", QLineEdit::Normal, "", &ok);
-
-		if (ok && !type.isEmpty()) {
+		if (!type.isEmpty()) {
 			if (condition != "WHERE ") {
 				condition += " AND ";
 			}
 			condition += "вид_изделия.`Вид изделия` LIKE '" + type.toStdString() + "%'";
 		}
-		else if (!ok) {
-			_ui->param_search_btn->setEnabled(true);
-			this->show();
-			return;
-		}
-		else if (type.isEmpty()) {
-			QMessageBox::critical(this, "Ошибка", "Вы ввели пустое значение!");
-			_ui->param_search_btn->setEnabled(true);
-			this->show();
-			return;
-		}
 	}
 
-	if (_ui->stone_check->isChecked()) {
-		bool ok;
-		QString stone = QInputDialog::getText(this, "Введите камень", "Название камня:", QLineEdit::Normal, "", &ok);
+	if (!_ui->stone->currentText().isEmpty()) {
+		QString stone = _ui->stone->currentText();
 
-		if (ok && !stone.isEmpty()) {
+		if (!stone.isEmpty()) {
 			if (condition != "WHERE ") {
 				condition += " AND ";
 			}
 			condition += "Камни.`Камень` LIKE '" + stone.toStdString() + "%'";
 		}
-		else if (!ok) {
-			_ui->param_search_btn->setEnabled(true);
-			this->show();
-			return;
-		}
-		else if (stone.isEmpty()) {
-			QMessageBox::critical(this, "Ошибка", "Вы ввели пустое значение!");
-			_ui->param_search_btn->setEnabled(true);
-			this->show();
-			return;
-		}
 	}
 
-	if (_ui->metal_check->isChecked()) {
-		bool ok;
-		QString metal = QInputDialog::getText(this, "Введите металл", "Название металла:", QLineEdit::Normal, "", &ok);
+	if (!_ui->metal->currentText().isEmpty()) {
+		QString metal = _ui->metal->currentText();
 
-		if (ok && !metal.isEmpty()) {
+		if (!metal.isEmpty()) {
 			if (condition != "WHERE ") {
 				condition += " AND ";
 			}
 			condition += "Металл.`Вид металла` LIKE '" + metal.toStdString() + "%'";
 		}
-		else if (!ok) {
-			_ui->param_search_btn->setEnabled(true);
-			this->show();
-			return;
-		}
-		else if (metal.isEmpty()) {
-			QMessageBox::critical(this, "Ошибка", "Вы ввели пустое значение!");
-			_ui->param_search_btn->setEnabled(true);
-			this->show();
-			return;
-		}
 	}
 
-	if (_ui->price_check->isChecked()) {
-		bool ok;
+	if (!_ui->lower_price->text().isEmpty() || !_ui->higher_price->text().isEmpty()) {
+		QString lower_price = _ui->lower_price->text();
+		QString higher_price = _ui->higher_price->text();
 
-		QString lower_price = QInputDialog::getText(this, "Введите минимальную цену", "Минимальная цена:", QLineEdit::Normal, "", &ok);
-		if (!ok) {
-			_ui->param_search_btn->setEnabled(true);
-			this->show();
-			return;
+		if (!_ui->lower_price->text().isEmpty() && !_ui->higher_price->text().isEmpty()) {
+			if (lower_price.toDouble() <= higher_price.toDouble()) {
+				if (condition != "WHERE ") {
+					condition += " AND ";
+				}
+				condition += "изделие.`Цена, руб` BETWEEN " + lower_price.toStdString() + " AND " + higher_price.toStdString();
+			}
+			else {
+				QMessageBox::critical(this, "Ошибка", "Введённая минимальная цена больше чем максимальная!");
+				_ui->param_search_btn->setEnabled(true);
+				return;
+			}
 		}
-		else if (lower_price.isEmpty()) {
-			QMessageBox::critical(this, "Ошибка", "Вы ввели пустое значение!");
-			_ui->param_search_btn->setEnabled(true);
-			this->show();
-			return;
-		}
-
-		QString higher_price = QInputDialog::getText(this, "Введите максимальную цену", "Максимальная цена:", QLineEdit::Normal, "", &ok);
-		if (!ok) {
-			_ui->param_search_btn->setEnabled(true);
-			this->show();
-			return;
-		}
-		else if (higher_price.isEmpty()) {
-			QMessageBox::critical(this, "Ошибка", "Вы ввели пустое значение!");
-			_ui->param_search_btn->setEnabled(true);
-			this->show();
-			return;
-		}
-
-		if (lower_price.toDouble() <= higher_price.toDouble()) {
+		else if (!_ui->lower_price->text().isEmpty() && _ui->higher_price->text().isEmpty()) {
 			if (condition != "WHERE ") {
 				condition += " AND ";
 			}
-			condition += "изделие.`Цена, руб` BETWEEN " + lower_price.toStdString() + " AND " + higher_price.toStdString();
+			condition += "изделие.`Цена, руб` BETWEEN " + lower_price.toStdString() + " AND 100000000000000 ";
 		}
-		else {
-			QMessageBox::critical(this, "Ошибка", "Введённая минимальная цена больше чем максимальная!");
-			_ui->param_search_btn->setEnabled(true);
-			this->show();
-			return;
+		else if (_ui->lower_price->text().isEmpty() && !_ui->higher_price->text().isEmpty()) {
+			if (condition != "WHERE ") {
+				condition += " AND ";
+			}
+			condition += "изделие.`Цена, руб` BETWEEN 0 AND " + higher_price.toStdString();
 		}
 	}
 
-	if (!(_ui->metal_check->isChecked() || _ui->stone_check->isChecked() || _ui->type_check->isChecked() || _ui->price_check->isChecked())) {
-		QMessageBox::warning(this, "Предупреждение", "Вы не выбрали ни один из параметров для поиска!");
-		_ui->param_search_btn->setEnabled(true);
-		this->show();
-		return;
+	if (!(_ui->product_type->currentText().isEmpty() && _ui->stone->currentText().isEmpty() && _ui->metal->currentText().isEmpty() &&
+		_ui->lower_price->text().isEmpty() && _ui->higher_price->text().isEmpty())) {
+		sql_query += condition + ';';
 	}
 
-	sql_query += condition + ';';
-	_query_result = new QueryResult(this);
+	QLayoutItem* child;
+	while ((child = _ui->products_layout->takeAt(0)) != nullptr) {
+		delete child->widget(); // Удаляем виджеты
+		delete child; // Освобождаем память после элемента компоновки
+	}
 
-	// Подключение сигнала destroyed() к слоту, который включает кнопку
-	connect(_query_result, &QObject::destroyed, this, &Customer::enableParamSearchButton);
-	_query_result->setAttribute(Qt::WA_DeleteOnClose); //clear memory
+	_products = new QueryResult(this);
 
 	sql::ResultSet* result = runQuery(sql_query);
+
 	if (result) {
-		_query_result->addDataToTable(result);
+		_products->addDataToTable(result);
 		delete result;
-		_query_result->show();
 	}
-	else {
-		QMessageBox::information(this, "Информация", "Данные не найдены!");
-		delete _query_result;
-		delete result;
-		_ui->param_search_btn->setEnabled(true);
-		this->show();
-	}
+
+	_ui->products_layout->addWidget(_products);
+	_ui->param_search_btn->setEnabled(true);
 }
 
-void Customer::enableParamSearchButton() {
-	_ui->param_search_btn->setEnabled(true);
-	this->show();
+
+void Customer::setupComboBoxes() {
+	std::string sql_query = "SELECT DISTINCT `Вид изделия` FROM `вид_изделия`;";
+	QStringList dataList = getDataFromTable(sql_query);
+	setupComboBox(_ui->product_type, dataList);
+
+	sql_query = "SELECT DISTINCT `Камень` FROM `Камни`;";
+	dataList = getDataFromTable(sql_query);
+	setupComboBox(_ui->stone, dataList);
+
+	sql_query = "SELECT DISTINCT `Вид металла` FROM `Металл`;";
+	dataList = getDataFromTable(sql_query);
+	setupComboBox(_ui->metal, dataList);
 }

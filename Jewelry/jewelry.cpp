@@ -27,9 +27,7 @@ Jewelry::~Jewelry() {
 
 void Jewelry::technologist_btn_clicked() {
 	_ui->technologist_btn->setEnabled(false);
-	this->hide();
 	_technologist = new Technologist(this);
-
 	// Подключение сигнала destroyed() к слоту, который включает кнопку
 	connect(_technologist, &QObject::destroyed, this, &Jewelry::enableTechnologistButton);
 	_technologist->setAttribute(Qt::WA_DeleteOnClose); //clear memory
@@ -38,15 +36,12 @@ void Jewelry::technologist_btn_clicked() {
 
 void Jewelry::enableTechnologistButton() {
 	_ui->technologist_btn->setEnabled(true);
-	this->show();
 }
 
 
 void Jewelry::admin_btn_clicked() {
 	_ui->admin_btn->setEnabled(false);
-	this->hide();
 	_admin = new Admin(this);
-
 	// Подключение сигнала destroyed() к слоту, который включает кнопку
 	connect(_admin, &QObject::destroyed, this, &Jewelry::enableAdminButton);
 	_admin->setAttribute(Qt::WA_DeleteOnClose); //clear memory
@@ -55,15 +50,12 @@ void Jewelry::admin_btn_clicked() {
 
 void Jewelry::enableAdminButton() {
 	_ui->admin_btn->setEnabled(true);
-	this->show();
 }
 
 
 void Jewelry::customer_btn_clicked() {
 	_ui->customer_btn->setEnabled(false);
-	this->hide();
 	_customer = new Customer(this);
-
 	// Подключение сигнала destroyed() к слоту, который включает кнопку
 	connect(_customer, &QObject::destroyed, this, &Jewelry::enableCustomerButton);
 	_customer->setAttribute(Qt::WA_DeleteOnClose); //clear memory
@@ -72,5 +64,4 @@ void Jewelry::customer_btn_clicked() {
 
 void Jewelry::enableCustomerButton() {
 	_ui->customer_btn->setEnabled(true);
-	this->show();
 }

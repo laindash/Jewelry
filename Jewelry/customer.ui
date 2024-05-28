@@ -6,309 +6,347 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>748</width>
-    <height>386</height>
+    <width>1473</width>
+    <height>714</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Покупатель</string>
   </property>
-  <widget class="QPushButton" name="products_btn">
+  <widget class="QWidget" name="formLayoutWidget_23">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>10</y>
+     <width>1461</width>
+     <height>537</height>
+    </rect>
+   </property>
+   <layout class="QFormLayout" name="products_layout"/>
+  </widget>
+  <widget class="QPushButton" name="save_products_table_btn">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>30</y>
-     <width>331</width>
-     <height>51</height>
+     <y>640</y>
+     <width>359</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="mouseTracking">
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Показать все изделия</string>
+    <string>Сохранить данные в отчёт</string>
    </property>
    <property name="checkable">
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="product_types_btn">
-   <property name="geometry">
-    <rect>
-     <x>390</x>
-     <y>30</y>
-     <width>331</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Показать виды изделий</string>
-   </property>
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="price_check">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>340</y>
-     <width>31</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QCheckBox::indicator {
-    width: 30px;
-    height: 30px;
-}</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="stones_btn">
+  <widget class="QPushButton" name="upd_products_table_btn">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>100</y>
-     <width>331</width>
-     <height>51</height>
+     <y>580</y>
+     <width>359</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="mouseTracking">
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Показать камни</string>
+    <string>Обновить данные в таблице</string>
    </property>
    <property name="checkable">
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QCheckBox" name="metal_check">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>290</y>
-     <width>31</width>
+     <x>860</x>
+     <y>550</y>
+     <width>121</width>
      <height>31</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">QCheckBox::indicator {
-    width: 30px;
-    height: 30px;
-}</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="metal_btn">
-   <property name="geometry">
-    <rect>
-     <x>390</x>
-     <y>100</y>
-     <width>331</width>
-     <height>51</height>
-    </rect>
-   </property>
    <property name="font">
     <font>
      <pointsize>16</pointsize>
     </font>
    </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
    <property name="text">
-    <string>Показать металлы</string>
+    <string>Параметры</string>
    </property>
-   <property name="checkable">
-    <bool>false</bool>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="higher_price">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>610</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
+   </property>
+   <property name="placeholderText">
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="param_search_btn">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>250</y>
-     <width>331</width>
-     <height>51</height>
+     <x>450</x>
+     <y>660</y>
+     <width>961</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="mouseTracking">
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Поиск изделия по параметрам</string>
+    <string>Поиск технологии по параметрам</string>
    </property>
    <property name="checkable">
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QCheckBox" name="type_check">
+  <widget class="QLineEdit" name="lower_price">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>190</y>
-     <width>31</width>
+     <x>460</x>
+     <y>610</y>
+     <width>141</width>
      <height>31</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">QCheckBox::indicator {
-    width: 30px;
-    height: 30px;
-}</string>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
-   <property name="text">
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
+   </property>
+   <property name="placeholderText">
     <string/>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
    </property>
   </widget>
-  <widget class="QCheckBox" name="stone_check">
+  <widget class="QComboBox" name="product_type">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>240</y>
-     <width>31</width>
-     <height>31</height>
+     <x>840</x>
+     <y>610</y>
+     <width>161</width>
+     <height>29</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">QCheckBox::indicator {
-    width: 30px;
-    height: 30px;
-}</string>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
-   <property name="text">
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="editable">
+    <bool>true</bool>
+   </property>
+   <property name="placeholderText">
     <string/>
    </property>
-   <property name="checked">
-    <bool>false</bool>
+  </widget>
+  <widget class="QComboBox" name="stone">
+   <property name="geometry">
+    <rect>
+     <x>1050</x>
+     <y>610</y>
+     <width>161</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="editable">
+    <bool>true</bool>
+   </property>
+   <property name="placeholderText">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="metal">
+   <property name="geometry">
+    <rect>
+     <x>1250</x>
+     <y>610</y>
+     <width>161</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="editable">
+    <bool>true</bool>
+   </property>
+   <property name="placeholderText">
+    <string/>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>570</y>
+     <width>961</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Orientation::Horizontal</enum>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>180</y>
-     <width>251</width>
-     <height>41</height>
+     <x>860</x>
+     <y>580</y>
+     <width>121</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>Поиск изделия по виду</string>
+    <string>Вид изделия</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>230</y>
-     <width>251</width>
-     <height>41</height>
+     <x>1070</x>
+     <y>580</y>
+     <width>121</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>Поиск изделия по камню</string>
+    <string>Камень</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>280</y>
-     <width>261</width>
-     <height>41</height>
+     <x>1270</x>
+     <y>580</y>
+     <width>121</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>Поиск изделия по металлу</string>
+    <string>Металл</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>330</y>
-     <width>261</width>
-     <height>41</height>
+     <x>450</x>
+     <y>580</y>
+     <width>171</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>Поиск изделия по цене</string>
+    <string>Минимальная цена, руб</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
-     <x>350</x>
-     <y>160</y>
-     <width>51</width>
-     <height>191</height>
+     <x>640</x>
+     <y>580</y>
+     <width>181</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>120</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>}</string>
+    <string>Максимальная цена, руб</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
    </property>
   </widget>
  </widget>

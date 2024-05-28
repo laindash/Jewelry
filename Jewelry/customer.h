@@ -20,15 +20,17 @@ public:
     ~Customer();
 
 private slots:
-    void products_btn_clicked();
-    void product_types_btn_clicked();
-    void stones_btn_clicked();
-    void metal_btn_clicked();
+    void products_save();
+    void products_add();
+
+   
     void param_search_btn_clicked();
+    void saveTableToFile(QTableWidget* tableWidget);
+    void setupComboBoxes();
 
 private:
     Ui::CustomerClass* _ui;
-    QueryResult* _query_result;
+    QueryResult* _products = nullptr;
 
     void enableProductsButton();
     void enableProductTypesButton();
