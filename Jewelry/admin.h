@@ -54,7 +54,8 @@ private slots:
 
 private:
     Ui::AdminClass *_ui;
-    QueryResult *_products, * _materials, *_metal, *_faceting, *_pam_com, *_stages, *_product_types, *_technologies, *_pas_com, *_equipment, *_stones;
+    QueryResult* _products = nullptr, * _materials = nullptr, * _metal = nullptr, * _faceting = nullptr, * _pam_com = nullptr,
+        * _stages = nullptr, * _product_types = nullptr, * _technologies = nullptr, * _pas_com = nullptr, * _equipment = nullptr, * _stones = nullptr;
 };
 
 #endif

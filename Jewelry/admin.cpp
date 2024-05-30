@@ -1,7 +1,6 @@
 ﻿#include "admin.h"
 #include "database.h"
 #include "qmessagebox.h"
-#include <QVBoxlayout>
 #include <qfiledialog.h>
 
 

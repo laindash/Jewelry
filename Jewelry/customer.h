@@ -22,7 +22,6 @@ public:
 private slots:
     void products_save();
     void products_add();
-
    
     void param_search_btn_clicked();
     void saveTableToFile(QTableWidget* tableWidget);

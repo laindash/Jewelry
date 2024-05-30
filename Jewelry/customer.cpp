@@ -1,7 +1,6 @@
 ﻿#include "customer.h"
 #include "database.h"
 #include "qmessagebox.h"
-#include <QInputDialog>
 #include <qfiledialog.h>
 
 

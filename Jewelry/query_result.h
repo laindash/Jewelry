@@ -22,6 +22,7 @@ class QueryResult : public QMainWindow {
 public:
 	QueryResult(QWidget *parent = nullptr);
 	QueryResult(QWidget* parent, QString& table_name, QString& primary_key_column_name);
+	QueryResult(QWidget* parent, QString& table_name, QString& primary_key_column_name, bool is_technolog);
 	~QueryResult();
 
 	void addDataToTable(sql::ResultSet* resultSet);
@@ -31,6 +32,7 @@ private slots:
 	void saveDataInDB();
 	void addNewRow();
 	void deleteRow();
+	void deleteRowTechnolog();
 
 private:
 	QString _table_name{}, _primary_key_column_name{};	

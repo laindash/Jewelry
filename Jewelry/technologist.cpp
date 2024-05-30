@@ -1,7 +1,6 @@
 ﻿#include "technologist.h"
 #include "database.h"
 #include "qmessagebox.h"
-#include <QVBoxlayout>
 #include <qfiledialog.h>
 
 
@@ -57,6 +56,7 @@ Technologist::Technologist(QWidget* parent) : QMainWindow(parent), _ui(new Ui::T
 	connect(_ui->stone_availability_btn, &QPushButton::clicked, this, &Technologist::stone_availability_btn_clicked);
 	connect(_ui->metal_availability_btn, &QPushButton::clicked, this, &Technologist::metal_availability_btn_clicked);
 	connect(_ui->param_search_btn, &QPushButton::clicked, this, &Technologist::param_search_btn_clicked);
+	connect(_ui->create_btn, &QPushButton::clicked, this, &Technologist::create_btn_clicked);
 }
 
 Technologist::~Technologist() {
@@ -315,17 +315,21 @@ void Technologist::products_add() {
 
 void Technologist::technologies_add() {
 	QLayoutItem* child;
+	QString table_name = "`технология`", primary_key_column_name = "`Код`";
+
 	while ((child = _ui->technologies_layout->takeAt(0)) != nullptr) {
 		delete child->widget(); // Удаляем виджеты
 		delete child; // Освобождаем память после элемента компоновки
 	}
 
-	_technologies = new QueryResult(this);
+	_technologies = new QueryResult(this, table_name, primary_key_column_name, true);
+
 
 	sql::ResultSet* result = runQuery("SELECT изделие.`Название изделия`, стадии.`Стадия`, оборудование.`Оборудование`, технология.`Время, ч`, технология.`Мощность, ватт`, технология.`Температура, °C`, технология.`Цена производства, руб` "
 		"FROM `технология` INNER JOIN `изделие` ON изделие.`Код изделия` = технология.`Изделие` "
 		"INNER JOIN `стадии` ON стадии.`Номер` = технология.`Стадия` "
-		"INNER JOIN `оборудование` ON оборудование.`Код` = технология.`Оборудование`;");
+		"INNER JOIN `оборудование` ON оборудование.`Код` = технология.`Оборудование` "
+		"ORDER BY `технология`.`Код`;");
 
 	if (result) {
 		_technologies->addDataToTable(result);
@@ -681,6 +685,105 @@ void Technologist::param_search_btn_clicked() {
 
 	_ui->technologies_layout->addWidget(_technologies);
 	_ui->param_search_btn->setEnabled(true);
+}
+
+
+void Technologist::create_btn_clicked() {
+	QString product_name = _ui->product->currentText();
+	QString stage_name = _ui->stage->currentText();
+	QString equipment_name = _ui->equipment->currentText();
+	QString time = _ui->lower_time->text();
+	QString power = _ui->lower_power->text();
+	QString temperature = _ui->lower_temp->text();
+	QString price = _ui->lower_price->text();
+
+	if (product_name.isEmpty() || stage_name.isEmpty() || equipment_name.isEmpty() ||
+		time.isEmpty() || power.isEmpty() || temperature.isEmpty() || price.isEmpty()) {
+		QMessageBox::warning(this, "Ошибка", "Пожалуйста, заполните все поля перед вставкой данных!");
+		return;
+	}
+
+	try {
+		QLayoutItem* child;
+		QString table_name = "`технология`", primary_key_column_name = "`Код`";
+
+		while ((child = _ui->technologies_layout->takeAt(0)) != nullptr) {
+			delete child->widget(); // Удаляем виджеты
+			delete child; // Освобождаем память после элемента компоновки
+		}
+
+		_technologies = new QueryResult(this);
+
+		std::unique_ptr<sql::ResultSet> result(runQuery(
+			"SELECT изделие.`Название изделия`, стадии.`Стадия`, оборудование.`Оборудование`, технология.`Время, ч`, технология.`Мощность, ватт`, технология.`Температура, °C`, технология.`Цена производства, руб` "
+			"FROM `технология` INNER JOIN `изделие` ON изделие.`Код изделия` = технология.`Изделие` "
+			"INNER JOIN `стадии` ON стадии.`Номер` = технология.`Стадия` "
+			"INNER JOIN `оборудование` ON оборудование.`Код` = технология.`Оборудование` "
+			"ORDER BY `технология`.`Код`;"));
+
+		if (result) {
+			_technologies->addDataToTable(result.get());
+		}
+
+		_ui->technologies_layout->addWidget(_technologies);
+
+		// Получаем ID существующего оборудования
+		std::string equipment_query = "SELECT `Код` FROM `оборудование` WHERE `Оборудование` = '" + equipment_name.toStdString() + "';";
+		std::unique_ptr<sql::ResultSet> equipment_result(runQuery(equipment_query));
+		int equipment_id = 0;
+		if (equipment_result->next()) {
+			equipment_id = equipment_result->getInt(1);
+		}
+		else {
+			QMessageBox::critical(this, "Ошибка", "Оборудование не найдено!");
+			return;
+		}
+
+		// Получаем ID существующей стадии
+		std::string stage_query = "SELECT `Номер` FROM `стадии` WHERE `Стадия` = '" + stage_name.toStdString() + "';";
+		std::unique_ptr<sql::ResultSet> stage_result(runQuery(stage_query));
+		int stage_id = 0;
+		if (stage_result->next()) {
+			stage_id = stage_result->getInt(1);
+		}
+		else {
+			QMessageBox::critical(this, "Ошибка", "Стадия не найдена!");
+			return;
+		}
+
+		// Получаем ID существующего изделия
+		std::string product_query = "SELECT `Код изделия` FROM `изделие` WHERE `Название изделия` = '" + product_name.toStdString() + "';";
+		std::unique_ptr<sql::ResultSet> product_result(runQuery(product_query));
+		int product_id = 0;
+		if (product_result->next()) {
+			product_id = product_result->getInt(1);
+		}
+		else {
+			QMessageBox::critical(this, "Ошибка", "Изделие не найдено!");
+			return;
+		}
+
+		// Получаем количество строк в таблице `технология`
+		int row_count = _technologies->_ui->output_table->rowCount();
+
+		// Определяем следующий ID
+		int next_id = row_count + 1;
+
+		// Вставляем данные в таблицу `технология`
+		std::string technology_query =
+			"INSERT INTO `технология` (`Код`, `Изделие`, `Стадия`, `Оборудование`, `Время, ч`, `Мощность, ватт`, `Температура, °C`, `Цена производства, руб`) "
+			"VALUES (" + std::to_string(next_id) + ", " + std::to_string(product_id) + ", " + std::to_string(stage_id) + ", "
+			+ std::to_string(equipment_id) + ", " + time.toStdString() + ", " + power.toStdString() + ", " + temperature.toStdString() + ", " + price.toStdString() + ");";
+
+		runQuery(technology_query);
+
+		technologies_add();
+
+		QMessageBox::information(this, "Успех", "Этап технологии добавлен!");
+	}
+	catch (const sql::SQLException& e) {
+		QMessageBox::critical(this, "Ошибка", "Ошибка при выполнении запроса: " + QString::fromStdString(e.what()));
+	}
 }
 
 

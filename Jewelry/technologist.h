@@ -47,6 +47,7 @@ private slots:
     void stone_availability_btn_clicked();
     void metal_availability_btn_clicked();
     void param_search_btn_clicked();
+    void create_btn_clicked();
 
     void saveTableToFile(QTableWidget* tableWidget);
     void setupComboBoxes();

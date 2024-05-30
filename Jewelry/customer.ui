@@ -132,7 +132,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Поиск технологии по параметрам</string>
+    <string>Поиск изделия по параметрам</string>
    </property>
    <property name="checkable">
     <bool>false</bool>

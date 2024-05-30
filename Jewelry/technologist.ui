@@ -176,7 +176,7 @@
     <widget class="QPushButton" name="upd_materials_table_btn">
      <property name="geometry">
       <rect>
-       <x>290</x>
+       <x>270</x>
        <y>590</y>
        <width>359</width>
        <height>41</height>
@@ -200,7 +200,7 @@
     <widget class="QPushButton" name="save_materials_table_btn">
      <property name="geometry">
       <rect>
-       <x>880</x>
+       <x>870</x>
        <y>590</y>
        <width>359</width>
        <height>41</height>
@@ -506,8 +506,8 @@
     <widget class="QPushButton" name="upd_faceting_table_btn">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>540</y>
+       <x>270</x>
+       <y>590</y>
        <width>359</width>
        <height>41</height>
       </rect>
@@ -530,8 +530,8 @@
     <widget class="QPushButton" name="save_faceting_table_btn">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>600</y>
+       <x>870</x>
+       <y>590</y>
        <width>359</width>
        <height>41</height>
       </rect>
@@ -570,8 +570,8 @@
     <widget class="QPushButton" name="upd_stages_table_btn">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>540</y>
+       <x>270</x>
+       <y>590</y>
        <width>359</width>
        <height>41</height>
       </rect>
@@ -594,8 +594,8 @@
     <widget class="QPushButton" name="save_stages_table_btn">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>600</y>
+       <x>870</x>
+       <y>590</y>
        <width>359</width>
        <height>41</height>
       </rect>
@@ -703,7 +703,7 @@
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>1270</x>
+       <x>1290</x>
        <y>620</y>
        <width>131</width>
        <height>31</height>
@@ -763,27 +763,6 @@
       <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_7">
-     <property name="geometry">
-      <rect>
-       <x>1070</x>
-       <y>560</y>
-       <width>181</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Минимальное время, ч</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_8">
      <property name="geometry">
       <rect>
@@ -800,27 +779,6 @@
      </property>
      <property name="text">
       <string>Максимальное  время, ч</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_9">
-     <property name="geometry">
-      <rect>
-       <x>620</x>
-       <y>560</y>
-       <width>221</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Минимальная мощность, ватт</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -850,7 +808,7 @@
     <widget class="QLabel" name="label_4">
      <property name="geometry">
       <rect>
-       <x>1270</x>
+       <x>1290</x>
        <y>560</y>
        <width>121</width>
        <height>31</height>
@@ -872,9 +830,9 @@
      <property name="geometry">
       <rect>
        <x>400</x>
-       <y>540</y>
-       <width>1031</width>
-       <height>20</height>
+       <y>525</y>
+       <width>1041</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="orientation">
@@ -884,10 +842,10 @@
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>860</x>
-       <y>510</y>
+       <x>850</x>
+       <y>500</y>
        <width>121</width>
-       <height>31</height>
+       <height>41</height>
       </rect>
      </property>
      <property name="font">
@@ -905,7 +863,7 @@
     <widget class="QComboBox" name="equipment">
      <property name="geometry">
       <rect>
-       <x>1260</x>
+       <x>1280</x>
        <y>590</y>
        <width>161</width>
        <height>29</height>
@@ -929,7 +887,7 @@
     <widget class="QLabel" name="label_3">
      <property name="geometry">
       <rect>
-       <x>1270</x>
+       <x>1290</x>
        <y>680</y>
        <width>121</width>
        <height>31</height>
@@ -972,18 +930,19 @@
      <property name="geometry">
       <rect>
        <x>380</x>
-       <y>560</y>
+       <y>530</y>
        <width>221</width>
-       <height>31</height>
+       <height>51</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <pointsize>12</pointsize>
+       <kerning>true</kerning>
       </font>
      </property>
      <property name="text">
-      <string>Мин. температура, °C</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Мин. температура, °C &lt;/p&gt;&lt;p&gt;(или ввод для нового этапа)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1013,7 +972,7 @@
     <widget class="QComboBox" name="stage">
      <property name="geometry">
       <rect>
-       <x>1260</x>
+       <x>1280</x>
        <y>710</y>
        <width>161</width>
        <height>29</height>
@@ -1058,7 +1017,7 @@
     <widget class="QComboBox" name="product">
      <property name="geometry">
       <rect>
-       <x>1260</x>
+       <x>1280</x>
        <y>650</y>
        <width>161</width>
        <height>29</height>
@@ -1077,27 +1036,6 @@
      </property>
      <property name="placeholderText">
       <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_5">
-     <property name="geometry">
-      <rect>
-       <x>870</x>
-       <y>560</y>
-       <width>181</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Минимальная цена, руб</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QPushButton" name="param_search_btn">
@@ -1232,6 +1170,72 @@
       <bool>false</bool>
      </property>
     </widget>
+    <widget class="QLabel" name="label_15">
+     <property name="geometry">
+      <rect>
+       <x>620</x>
+       <y>530</y>
+       <width>221</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Минимальная мощность, ватт&lt;/p&gt;&lt;p&gt;(или ввод для нового этапа)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_16">
+     <property name="geometry">
+      <rect>
+       <x>850</x>
+       <y>530</y>
+       <width>221</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Минимальная цена, руб&lt;/p&gt;&lt;p&gt;(или ввод для нового этапа)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_17">
+     <property name="geometry">
+      <rect>
+       <x>1060</x>
+       <y>530</y>
+       <width>221</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Минимальное время, ч&lt;/p&gt;&lt;p&gt;(или ввод для нового этапа)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="equipment_tab">
     <attribute name="title">
@@ -1251,8 +1255,8 @@
     <widget class="QPushButton" name="upd_equipment_table_btn">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>540</y>
+       <x>270</x>
+       <y>590</y>
        <width>359</width>
        <height>41</height>
       </rect>
@@ -1275,8 +1279,8 @@
     <widget class="QPushButton" name="save_equipment_table_btn">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>600</y>
+       <x>870</x>
+       <y>590</y>
        <width>359</width>
        <height>41</height>
       </rect>
@@ -1315,8 +1319,8 @@
     <widget class="QPushButton" name="upd_pam_com_table_btn">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>540</y>
+       <x>270</x>
+       <y>590</y>
        <width>359</width>
        <height>41</height>
       </rect>
@@ -1339,8 +1343,8 @@
     <widget class="QPushButton" name="save_pam_com_table_btn">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>600</y>
+       <x>870</x>
+       <y>590</y>
        <width>359</width>
        <height>41</height>
       </rect>
@@ -1379,8 +1383,8 @@
     <widget class="QPushButton" name="upd_pas_com_table_btn">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>540</y>
+       <x>270</x>
+       <y>590</y>
        <width>359</width>
        <height>41</height>
       </rect>
@@ -1403,8 +1407,8 @@
     <widget class="QPushButton" name="save_pas_com_table_btn">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>600</y>
+       <x>870</x>
+       <y>590</y>
        <width>359</width>
        <height>41</height>
       </rect>
