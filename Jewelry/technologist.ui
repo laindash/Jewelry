@@ -930,9 +930,9 @@
      <property name="geometry">
       <rect>
        <x>380</x>
-       <y>530</y>
+       <y>561</y>
        <width>221</width>
-       <height>51</height>
+       <height>20</height>
       </rect>
      </property>
      <property name="font">
@@ -942,7 +942,7 @@
       </font>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Мин. температура, °C &lt;/p&gt;&lt;p&gt;(или ввод для нового этапа)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;(или ввод для нового этапа)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1174,9 +1174,9 @@
      <property name="geometry">
       <rect>
        <x>620</x>
-       <y>530</y>
+       <y>561</y>
        <width>221</width>
-       <height>51</height>
+       <height>20</height>
       </rect>
      </property>
      <property name="font">
@@ -1186,7 +1186,7 @@
       </font>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Минимальная мощность, ватт&lt;/p&gt;&lt;p&gt;(или ввод для нового этапа)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;(или ввод для нового этапа)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1196,9 +1196,9 @@
      <property name="geometry">
       <rect>
        <x>850</x>
-       <y>530</y>
+       <y>561</y>
        <width>221</width>
-       <height>51</height>
+       <height>20</height>
       </rect>
      </property>
      <property name="font">
@@ -1208,7 +1208,7 @@
       </font>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Минимальная цена, руб&lt;/p&gt;&lt;p&gt;(или ввод для нового этапа)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;(или ввод для нового этапа)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1218,9 +1218,9 @@
      <property name="geometry">
       <rect>
        <x>1060</x>
-       <y>530</y>
+       <y>561</y>
        <width>221</width>
-       <height>51</height>
+       <height>20</height>
       </rect>
      </property>
      <property name="font">
@@ -1230,7 +1230,91 @@
       </font>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Минимальное время, ч&lt;/p&gt;&lt;p&gt;(или ввод для нового этапа)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;(или ввод для нового этапа)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_18">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>530</y>
+       <width>221</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Мин. температура, °C </string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_19">
+     <property name="geometry">
+      <rect>
+       <x>620</x>
+       <y>540</y>
+       <width>221</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Минимальная мощность, ватт</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_20">
+     <property name="geometry">
+      <rect>
+       <x>850</x>
+       <y>540</y>
+       <width>221</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Минимальная цена, руб</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_21">
+     <property name="geometry">
+      <rect>
+       <x>1050</x>
+       <y>540</y>
+       <width>221</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Минимальное время, ч</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
